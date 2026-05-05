@@ -1,0 +1,59 @@
+---
+const { images } = Astro.props;
+---
+
+<div class="gallery-grid pswp-gallery" id="galleryGrid">
+  {images.map((img, idx) => (
+    <a href={img} data-pswp-src={img} class="pswp-item">
+      <img src={img} alt={`Усадьба вид ${idx + 1}`} loading="lazy" />
+    </a>
+  ))}
+</div>
+
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    margin: 2rem 0;
+  }
+
+  .pswp-item {
+    display: block;
+    border-radius: var(--border-radius);
+    outline: none;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    will-change: transform;
+  }
+
+  .pswp-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(180, 138, 90, 0.35);
+  }
+
+  .pswp-item:focus-visible {
+    box-shadow: 0 0 0 3px var(--bg-primary), 0 0 0 5px var(--accent-dark);
+  }
+
+  .pswp-item img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    border-radius: inherit;
+  }
+
+  @media (max-width: 640px) {
+    .gallery-grid {
+      gap: 0.8rem;
+    }
+  }
+</style>
+
+<script>
+  import { initGallery } from '../../scripts/gallery.js';
+  initGallery();
+</script>

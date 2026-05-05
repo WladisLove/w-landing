@@ -1,0 +1,15 @@
+---
+import Gallery from "./Gallery.astro";
+import Map from "./Map.astro";
+
+const { images } = Astro.props;
+---
+
+<section class="venue">
+  <div class="container">
+    <h2 data-reveal>Место проведения</h2>
+    <p data-reveal data-reveal-delay="100" style="text-align:center; margin-bottom:1rem;">Усадьба Марьянино, Раубичи</p>
+    <Gallery images={images} />
+    <Map />
+  </div>
+</section>

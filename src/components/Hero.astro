@@ -1,0 +1,63 @@
+---
+const { targetTimestamp } = Astro.props;
+const d = new Date(targetTimestamp);
+const day = d.getDate();
+const month = d.toLocaleString('en', { month: 'short' }).toUpperCase();
+const year = String(d.getFullYear()).slice(-2);
+---
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="date">
+      <span>{day}</span>
+      <span>{month}</span>
+      <span>{year}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('/hero-bg.jpg') center/cover no-repeat;
+    color: white;
+    padding: 2rem;
+  }
+
+  .hero-content {
+    max-width: 800px;
+  }
+
+  .date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    font-family: 'GFS Didot', Georgia, serif;
+    font-size: 5.2rem;
+    font-weight: 400;
+    letter-spacing: 6px;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    padding-top: 0.75rem;
+    line-height: 1.15;
+    will-change: opacity, transform;
+    animation: date-appear 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+  }
+
+  @keyframes date-appear {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

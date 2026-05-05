@@ -1,0 +1,292 @@
+---
+const flowerSubUrl = "https://present-simple.w-p.by";
+const flowerSubQr = "/flower-sub-qr.png";
+---
+
+<section class="gifts">
+  <div class="container">
+    <h2 data-reveal>Пожелания</h2>
+    <p class="gifts-intro" data-reveal data-reveal-delay="100">
+      Дорогие гости, если вы захотите поздравить нас цветами, мы будем тронуты — но вместо букетов будем искренне рады одному из этих подарков:
+    </p>
+
+    <div class="gifts-grid">
+      <div class="gift-item" data-reveal>
+        <span class="gift-item__icon">🍷</span>
+        <h3 class="gift-item__title">Бутылка вина</h3>
+        <p class="gift-item__desc">Ваше любимое — мы откроем его в особенный вечер и вспомним вас добрым словом.</p>
+      </div>
+
+      <div class="gift-item" data-reveal data-reveal-delay="150">
+        <span class="gift-item__icon">🌸</span>
+        <h3 class="gift-item__title">Цветочная подписка</h3>
+        <p class="gift-item__desc">Букет каждый месяц — чтобы наш дом всегда был наполнен цветами и теплом.</p>
+        <div class="gift-item__action">
+          <button class="flower-sub-btn" id="flowerSubBtn">Пополнить подписку</button>
+        </div>
+      </div>
+
+      <div class="gift-item" data-reveal data-reveal-delay="300">
+        <span class="gift-item__icon">🗺️</span>
+        <h3 class="gift-item__title">Совместное приключение</h3>
+        <p class="gift-item__desc">Сертификат на театр, концерт, путешествие или любое событие на двоих.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Flower subscription modal -->
+<div class="flower-modal-overlay" id="flowerModal" role="dialog" aria-modal="true" aria-labelledby="flowerModalTitle">
+  <div class="flower-modal">
+    <button class="flower-modal__close" id="flowerModalClose" aria-label="Закрыть">&times;</button>
+    <h3 class="flower-modal__title" id="flowerModalTitle">🌸 Цветочная подписка</h3>
+    <a href={flowerSubUrl} target="_blank" rel="noopener noreferrer" class="flower-modal__qr-link" title="Перейти по ссылке">
+      <img src={flowerSubQr} alt="QR-код для пополнения цветочной подписки" width="130" height="130" loading="lazy" class="flower-modal__qr" />
+    </a>
+    <p class="flower-modal__hint">Отсканируйте QR-код или нажмите на него, чтобы перейти по ссылке</p>
+    <div class="flower-modal__rules">
+      <p class="flower-modal__rules-intro">При переводе, пожалуйста, укажите:</p>
+      <ol class="flower-modal__rules-list">
+        <li>Полное ФИО — <strong>Степанюк Мария Витальевна</strong></li>
+        <li>Наименование товара/услуг — <strong>цветочная свадебная подписка</strong></li>
+      </ol>
+      <p class="flower-modal__rules-note">Это важно, чтобы мы могли отследить, от кого пришёл перевод 🙌</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .gifts-intro {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 3rem;
+    color: var(--text-light);
+  }
+
+  .gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    max-width: 780px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .gift-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 0 2rem;
+    position: relative;
+  }
+
+  .gift-item + .gift-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(212, 180, 140, 0.4), transparent);
+  }
+
+  .gift-item__icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1;
+  }
+
+  .gift-item__title {
+    font-family: 'Poiret One', system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--accent-darker);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.01em;
+  }
+
+  .gift-item__desc {
+    color: var(--text-light);
+    font-size: 0.875rem;
+  }
+
+  .gift-item__action {
+    margin-top: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+
+  .flower-sub-btn {
+    font-family: 'Poiret One', system-ui, sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    color: var(--accent-darker);
+    background: transparent;
+    border: 1px solid rgba(156, 110, 62, 0.45);
+    border-radius: 2rem;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .flower-sub-btn:hover {
+    background: rgba(156, 110, 62, 0.08);
+    border-color: rgba(156, 110, 62, 0.7);
+  }
+
+  /* Modal */
+  .flower-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 20, 10, 0.55);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .flower-modal-overlay.is-open {
+    display: flex;
+  }
+
+  .flower-modal {
+    background: var(--bg, #fff9f5);
+    border-radius: 1.2rem;
+    padding: 2rem 2rem 1.75rem;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  }
+
+  .flower-modal__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.9rem;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .flower-modal__close:hover { opacity: 1; }
+
+  .flower-modal__title {
+    font-family: 'Poiret One', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--accent-darker);
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.01em;
+  }
+
+  .flower-modal__qr-link {
+    display: inline-block;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 1px solid rgba(212, 180, 140, 0.4);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    line-height: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .flower-modal__qr-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+
+  .flower-modal__qr {
+    display: block;
+    width: 130px;
+    height: 130px;
+  }
+
+  .flower-modal__hint {
+    font-size: 0.75rem;
+    color: var(--accent-dark);
+    margin: 0.6rem 0 1.25rem;
+    letter-spacing: 0.02em;
+  }
+
+  .flower-modal__rules {
+    font-size: 1rem;
+    text-align: left;
+    background: rgba(212, 180, 140, 0.1);
+    border-radius: 0.75rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .flower-modal__rules-intro {
+    /* font-size: 0.8rem; */
+    color: var(--text-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .flower-modal__rules-list {
+    margin: 0 0 0.6rem;
+    padding-left: 1.25rem;
+    /* font-size: 0.8rem; */
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .flower-modal__rules-list strong {
+    color: var(--accent-darker);
+  }
+
+  .flower-modal__rules-note {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .gifts-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .gift-item {
+      padding: 0;
+    }
+
+    .gift-item + .gift-item::before {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('flowerSubBtn');
+  const modal = document.getElementById('flowerModal');
+  const closeBtn = document.getElementById('flowerModalClose');
+
+  function openModal() {
+    modal?.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal?.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  btn?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>

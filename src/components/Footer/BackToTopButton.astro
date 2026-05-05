@@ -1,0 +1,24 @@
+<button class="back-to-top" id="backToTopBtn" aria-label="Наверх">↑ Наверх</button>
+
+<style>
+  .back-to-top {
+    background: var(--accent-dark);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.6rem;
+    border-radius: 3rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .back-to-top:hover {
+    background: var(--accent-darker);
+  }
+</style>
+
+<script>
+  import { initBackToTop } from '../../scripts/backToTop.js';
+  initBackToTop();
+</script>

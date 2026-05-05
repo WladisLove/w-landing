@@ -1,0 +1,75 @@
+---
+const events = [
+  { time: "14:30", label: "Сбор гостей и фуршет" },
+  { time: "15:30", label: "Торжественная церемония" },
+  { time: "17:00", label: "Начало банкета" },
+];
+---
+<section class="timeline">
+  <div class="container">
+    <h2 data-reveal>Тайминг дня</h2>
+    <div class="timing-list">
+      {events.map(({ time, label }, idx) => (
+        <div class="timing-row" data-reveal data-reveal-delay={idx * 120}>
+          <span class="timing-time">{time}</span>
+          <span class="timing-event">{label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .timing-list {
+    max-width: 520px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timing-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .timing-time {
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--khaki);
+    width: 150px;
+    text-align: right;
+    flex-shrink: 0;
+    padding: 1rem 1.2rem 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .timing-event {
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    text-align: left;
+    border-left: 2px solid var(--khaki);
+    padding: 0.6rem 0 0.6rem 1.2rem;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 640px) {
+    .timing-list {
+      max-width: 100%;
+    }
+
+    .timing-time {
+      width: 100px;
+      font-size: 1.8rem;
+    }
+
+    .timing-event {
+      font-size: 1.4em;
+    }
+  }
+</style>

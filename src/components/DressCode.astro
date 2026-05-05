@@ -1,0 +1,55 @@
+<section class="dresscode">
+  <div class="container dresscode-text" data-reveal>
+    <h2>Дресс‑код</h2>
+    <p>Мы будем особенно рады, если в нарядах будут преобладать пастельные тона.</p>
+    <p>Для тех, кто хочет попасть в наш день на&nbsp;100%, мы подобрали наиболее предпочтительные оттенки:</p>
+  </div>
+  <div class="dresscode-palette" data-reveal="fade" data-reveal-delay="200">
+    <div class="dresscode-color" style="--c: rgb(250, 236, 224);"></div>
+    <div class="dresscode-color" style="--c: rgb(241, 222, 202);"></div>
+    <div class="dresscode-color" style="--c: rgb(187, 175, 146);"></div>
+    <div class="dresscode-color" style="--c: rgb(103, 109, 63);"></div>
+    <div class="dresscode-color" style="--c: rgb(59, 59, 59);"></div>
+  </div>
+</section>
+
+<style>
+  .dresscode {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    overflow: hidden;
+    padding-bottom: 0;
+  }
+
+  .dresscode-text {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+
+  .dresscode-text p {
+    max-width: 520px;
+    margin: 0.4rem auto;
+    color: var(--text-light);
+  }
+
+  .dresscode-palette {
+    display: flex;
+    gap: 5px;
+    height: 160px;
+    padding: 0 5px;
+    contain: layout;
+  }
+
+  .dresscode-color {
+    flex: 1;
+    background: var(--c);
+    border-radius: 10px 10px 0 0;
+    transition: flex 0.35s ease, filter 0.25s ease;
+  }
+
+  .dresscode-color:hover {
+    flex: 2;
+    filter: brightness(1.05);
+  }
+</style>

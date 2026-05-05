@@ -1,0 +1,91 @@
+---
+const { targetTimestamp } = Astro.props;
+---
+
+<section class="timer" data-target-timestamp={targetTimestamp}>
+  <div class="container">
+    <div class="timer-bar" data-reveal="fade" data-reveal-delay="150">
+      <div class="timer-unit"><span class="timer-number" id="days">0</span><span class="timer-label">дней</span></div>
+      <span class="timer-sep">|</span>
+      <div class="timer-unit"><span class="timer-number" id="hours">0</span><span class="timer-label">часов</span></div>
+      <span class="timer-sep">|</span>
+      <div class="timer-unit"><span class="timer-number" id="minutes">0</span><span class="timer-label">минут</span></div>
+      <span class="timer-sep">|</span>
+      <div class="timer-unit"><span class="timer-number" id="seconds">0</span><span class="timer-label">секунд</span></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .timer {
+    background: var(--khaki);
+  }
+
+  .timer-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+  }
+
+  .timer-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2rem;
+  }
+
+  .timer-sep {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 2rem;
+    font-weight: 200;
+    line-height: 1;
+    align-self: center;
+  }
+
+  .timer-number {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+
+  .timer-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .timer-bar {
+      padding: 1.2rem 0;
+    }
+
+    .timer-unit {
+      padding: 0 0.8rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .timer-unit {
+      padding: 0 2.5rem;
+    }
+
+    .timer-number {
+      font-size: 3rem;
+    }
+  }
+</style>
+
+<script>
+  import { startTimer } from '../scripts/timer.js';
+  const section = document.querySelector('.timer') as HTMLElement;
+  const targetTimestamp = Number(section?.dataset.targetTimestamp);
+  startTimer(targetTimestamp);
+</script>

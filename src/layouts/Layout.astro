@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description = "Свадьба Влада и Марии", image = "/hero-bg.jpg" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <!-- <meta property="og:image" content={new URL(image, Astro.site).href} /> -->
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" /> -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Poiret+One&display=block" rel="stylesheet" />
+    <link rel="preload" as="image" href="/hero-bg.jpg" fetchpriority="high" />
+    
+    <!-- Яндекс.Карты API -->
+    <script defer src="https://api-maps.yandex.ru/2.1/?apikey=XXX&lang=ru_RU"></script>
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+    <script>
+      const io = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const el = entry.target as HTMLElement;
+          const delay = el.dataset.revealDelay;
+          if (delay) el.style.transitionDelay = delay + 'ms';
+          el.classList.add('revealed');
+          io.unobserve(el);
+        }
+      }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+    </script>
+  </body>
+</html>

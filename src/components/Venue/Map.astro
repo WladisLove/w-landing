@@ -1,0 +1,39 @@
+<div class="map-container">
+  <div id="map"></div>
+</div>
+<div class="map-btn">
+  <a href="https://yandex.by/maps/org/usadba_maryanino/74793706989" target="_blank" rel="noopener" class="btn-outline">
+    Открыть в Яндекс.Картах
+  </a>
+</div>
+<div class="map-btn">
+  <a href="https://maps.app.goo.gl/yF6wJpfkZEvmcykc9" target="_blank" rel="noopener" class="btn-outline">
+    Открыть в Google Maps
+  </a>
+</div>
+
+<style>
+  .map-container {
+    display: none;
+    margin: 2rem 0;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    height: 350px;
+  }
+
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+
+  .map-btn {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+</style>
+
+<script>
+  import { initMap } from '../../scripts/map.js';
+  initMap();
+</script>
