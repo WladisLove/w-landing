@@ -7,7 +7,8 @@ export interface Props {
   image?: string;
 }
 
-const { title, description = "Свадьба Влада и Марии", image = "/hero-bg.jpg" } = Astro.props;
+const { title, description = "С радостью приглашаем вас на нашу свадьбу — день любви, слез счастья и новых воспоминаний.", image = "/hero-bg.jpg" } = Astro.props;
+const ogImage = new URL(import.meta.env.BASE_URL + image.replace(/^\//, ''), Astro.site).href;
 ---
 
 <!doctype html>
@@ -21,17 +22,22 @@ const { title, description = "Свадьба Влада и Марии", image = 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site).href} />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:image:alt" content={title} />
     
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
 
 	<!-- <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" /> -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Poiret+One&display=block" rel="stylesheet" />
-    <link rel="preload" as="image" href="/hero-bg.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href={`${import.meta.env.BASE_URL}hero-bg.jpg`} fetchpriority="high" />
     
     <!-- Яндекс.Карты API -->
     <script defer src="https://api-maps.yandex.ru/2.1/?apikey=XXX&lang=ru_RU"></script>
