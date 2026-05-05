@@ -6,5 +6,5 @@ export default defineConfig({
     integrations: [],
     // output: 'static',
     site: 'https://WladisLove.github.io',
-    base: '/w-landing',
+    base: '/w-landing/',
 });
