@@ -7,7 +7,7 @@ export interface Props {
   image?: string;
 }
 
-const { title, description = "С радостью приглашаем вас на нашу свадьбу — день любви, слез счастья и новых воспоминаний.", image = "/hero-bg.jpg" } = Astro.props;
+const { title, description = "С радостью приглашаем вас на нашу свадьбу — день любви, слез счастья и новых воспоминаний.", image = "/og-image.jpg" } = Astro.props;
 const ogImage = new URL(import.meta.env.BASE_URL + image.replace(/^\//, ''), Astro.site).href;
 ---
 
@@ -34,9 +34,9 @@ const ogImage = new URL(import.meta.env.BASE_URL + image.replace(/^\//, ''), Ast
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
 
 	<!-- <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" /> -->
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Poiret+One&display=block" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Poiret+One&display=block" rel="stylesheet" />
     <link rel="preload" as="image" href={`${import.meta.env.BASE_URL}hero-bg.jpg`} fetchpriority="high" />
     
     <!-- Яндекс.Карты API -->
