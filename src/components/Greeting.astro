@@ -1,9 +1,14 @@
+---
+const { weddingDate } = Astro.props;
+---
+
 <section class="greeting">
   <div class="container">
     <h2 data-reveal>ДОРОГИЕ РОДНЫЕ И БЛИЗКИЕ</h2>
     <p data-reveal data-reveal-delay="150" style="font-size: 1.25em; max-width:700px; margin:0 auto;">
       С особой радостью и волнением приглашаем вас на день рождения нашей семьи.<br />
-      Мы очень ждём встречи, чтобы вместе создать тёплые воспоминания.<br />
+      Мы очень ждём встречи, чтобы вместе создать тёплые воспоминания.<br /><br />
+      Уже совсем скоро — <strong>{weddingDate}</strong>.
     </p>
   </div>
 </section>
