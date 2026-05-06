@@ -20,7 +20,8 @@ const monthNames = [
 const day = date.getDate();
 const month = monthNames[date.getMonth()];
 const year = date.getFullYear();
-const weddingDate = `${day} ${month} ${year}`;
+const weddingDate = `${day} ${month}`;
+const weddingFullDate = `${day} ${month} ${year}`;
 
 const venueImages = [
   `${import.meta.env.BASE_URL}place1.webp`,
@@ -32,14 +33,14 @@ const venueImages = [
 ];
 ---
 
-<BaseLayout title={`Свадьба Влада и Марии | ${weddingDate}`}>
+<BaseLayout title={`Свадьба Влада и Марии | ${weddingFullDate}`}>
   <Hero targetTimestamp={targetTimestamp} />
-  <Greeting />
+  <Greeting weddingDate={weddingDate}/>
   <Timer targetTimestamp={targetTimestamp} />
   <Timeline />
   <Venue images={venueImages} />
   <DressCode />
   <Gifts />
   <Contacts />
-  <Footer weddingDate={weddingDate} />
+  <Footer weddingDate={weddingFullDate} />
 </BaseLayout>
